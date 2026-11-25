@@ -31,8 +31,12 @@ if not exist "%REMOTION%\package.json" (
 )
 
 :: Kiem tra xem da chay setup.bat chua
-if not exist "%BASE_DIR%node_modules" (
-  echo ERROR: Chua cai dat thu vien! Vui long chay file setup.bat truoc.
+if not exist "%SERVER%\node_modules" (
+  echo ERROR: Chua cai dat thu vien Server! Vui long chay file setup.bat truoc.
+  goto :failed
+)
+if not exist "%REMOTION%\node_modules" (
+  echo ERROR: Chua cai dat thu vien Engine! Vui long chay file setup.bat truoc.
   goto :failed
 )
 
