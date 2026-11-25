@@ -1,0 +1,15 @@
+{
+  "name": "editvideochatgpt",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Dashboard chỉnh phụ đề video: server API + dashboard + Remotion Studio",
+  "workspaces": [
+    "server",
+    "engine"
+  ],
+  "scripts": {
+    "server": "node server/index.js",
+    "studio": "npm run dev --workspace=engine -- --port=3000 --no-open",
+    "lint": "npm run lint --workspace=engine"
+  }
+}

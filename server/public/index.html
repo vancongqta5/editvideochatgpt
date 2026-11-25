@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Dashboard Studio 2.1</title>
+  <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+  <header>
+    <div class="brand">VIDEO DASHBOARD <span>STUDIO 2.1</span></div>
+    <button id="reload">Tải lại cảnh</button>
+    <button id="save">Lưu phụ đề</button>
+    <button id="sync">Đồng bộ Python</button>
+    <button id="render">Xuất MP4</button>
+    <a id="download" download="video.mp4" hidden>Tải MP4</a>
+    <button id="sourcesReload">Đọc data/source</button>
+
+    <select id="sourceSelect" aria-label="Chọn video nguồn">
+      <option value="">-- Chọn video --</option>
+    </select>
+
+    <button id="openSource">Tạo & mở dự án</button>
+    <span id="projectLabel">Chưa chọn dự án</span>  
+  </header>
+  <p id="status" role="status" aria-live="polite">Đang tải…</p>
+  <details id="logs" hidden><summary>Log tác vụ</summary><pre id="log"></pre></details>
+  <main>
+    <aside class="left">
+      <div class="bar"><strong>Kịch bản</strong><span id="count"></span></div>
+      <div id="scenes"></div>
+    </aside>
+    <section>
+      <div class="bar">
+        <strong>Preview & Timeline</strong>
+        <span id="connection">Đang nối Studio…</span>
+        <a href="http://localhost:3000/MyComposition" target="_blank" rel="noopener">Mở riêng ↗</a>
+        <button id="refresh">↻ Studio</button>
+      </div>
+      <iframe id="studio" title="Remotion Studio và Timeline" src="http://localhost:3000/MyComposition" allowfullscreen></iframe>
+    </section>
+    <aside class="right">
+      <div class="bar"><strong>Định dạng phụ đề</strong><span id="selected"></span></div>
+      <fieldset id="inspector" disabled>
+        <label class="control">Font chữ<select id="fontFamily"><option>Arial</option><option>Tahoma</option><option>Verdana</option><option>Georgia</option><option>Times New Roman</option></select></label>
+        <label class="control">Độ đậm<select id="fontWeight"><option value="400">Thường</option><option value="700">Đậm</option><option value="900">Rất đậm</option></select></label>
+        <div id="ranges"></div>
+        <div class="colors">
+          <label>Màu chữ<input id="color" type="color"></label>
+          <label>Màu nền<input id="backgroundColor" type="color"></label>
+          <label>Màu viền<input id="strokeColor" type="color"></label>
+        </div>
+        <label class="control">Hiệu ứng xuất hiện<select id="effect"><option value="none">Không hiệu ứng</option><option value="fade">Hiện dần</option><option value="pop">Phóng nhẹ</option><option value="slide">Trượt lên</option></select></label>
+        <button id="drag">Bật kéo chữ trong Preview</button>
+        <button id="reset">Đặt lại định dạng cảnh</button>
+        <button id="apply">Áp dụng kiểu cho tất cả</button>
+        <p class="hint">Studio hiện thay đổi ngay. Bấm Lưu phụ đề để giữ bản chỉnh.<br>Tắt kéo chữ khi phát thử để xem đúng hiệu ứng.</p>
+      </fieldset>
+    </aside>
+  </main>
+<script src="app.js"></script>
+</body>
+</html>

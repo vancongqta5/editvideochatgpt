@@ -11,11 +11,10 @@
 *.mkv
 *.mp3
 *.wav
-source/
-01_SOURCE/
-02_FOOTAGE/
-04_PREVIEW/
-05_FINAL/
+data/source/*
+!data/source/.gitkeep
+data/final/*
+!data/final/.gitkeep
 **/out/
 **/public/input.mp4
 
@@ -25,10 +24,17 @@ source/
 .DS_Store
 Thumbs.db
 
+# Venv whisper của project
+.venv-whisper/
+
+
+# Metadata IDE và agent harness — không phải mã nguồn
+.openidea/
+.omp/
 **/.env
 *.bak
 
-# Bỏ qua dữ liệu dự án test cá nhân
-skill1/00_SHARED_WORKSPACE/projects/*
-!skill1/00_SHARED_WORKSPACE/projects/.gitkeep
-skill1/00_SHARED_WORKSPACE/active-project.json
+# Bỏ qua dữ liệu dự án cá nhân
+data/projects/*
+!data/projects/.gitkeep
+data/active-project.json

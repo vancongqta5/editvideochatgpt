@@ -3,7 +3,6 @@ setlocal
 title editvideochatgpt - Setup
 
 set "BASE_DIR=%~dp0"
-set "ROOT=%BASE_DIR%skill1\03_PROJECT"
 
 where node.exe >nul 2>&1
 if errorlevel 1 (
@@ -15,22 +14,9 @@ if errorlevel 1 (
 echo ====================================================
 echo      CAI DAT THU VIEN CHO EDITVIDEOCHATGPT
 echo ====================================================
-
 echo.
-echo [1/3] Dang cai dat Server API...
-cd /d "%ROOT%\server-api"
-call npm install
-if errorlevel 1 goto :error
-
-echo.
-echo [2/3] Dang cai dat Web Dashboard...
-cd /d "%ROOT%\web-dashboard"
-call npm install
-if errorlevel 1 goto :error
-
-echo.
-echo [3/3] Dang cai dat Remotion Engine...
-cd /d "%ROOT%\remotion-engine"
+echo Cai dat tat ca dependency (server + engine) bang mot lenh npm install...
+cd /d "%BASE_DIR%"
 call npm install
 if errorlevel 1 goto :error
 

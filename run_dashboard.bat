@@ -4,10 +4,8 @@ title editvideochatgpt - Launcher
 
 :: Tu dong nhan dien thu muc chua file .bat nay tren bat ky may tinh nao
 set "BASE_DIR=%~dp0"
-set "ROOT=%BASE_DIR%skill1\03_PROJECT"
-set "SERVER=%ROOT%\server-api"
-set "REMOTION=%ROOT%\remotion-engine"
-set "VIDEO_PROJECT=%REMOTION%"
+set "SERVER=%BASE_DIR%server"
+set "REMOTION=%BASE_DIR%engine"
 set "PORT=3001"
 
 where node.exe >nul 2>&1
@@ -22,8 +20,8 @@ if errorlevel 1 (
   goto :failed
 )
 
-if not exist "%SERVER%\server.js" (
-  echo ERROR: Khong tim thay %SERVER%\server.js
+if not exist "%SERVER%\index.js" (
+  echo ERROR: Khong tim thay %SERVER%\index.js
   goto :failed
 )
 
@@ -33,12 +31,7 @@ if not exist "%REMOTION%\package.json" (
 )
 
 :: Kiem tra xem da chay setup.bat chua
-if not exist "%SERVER%\node_modules" (
-  echo ERROR: Chua cai dat thu vien! Vui long chay file setup.bat truoc.
-  goto :failed
-)
-
-if not exist "%REMOTION%\node_modules" (
+if not exist "%BASE_DIR%node_modules" (
   echo ERROR: Chua cai dat thu vien! Vui long chay file setup.bat truoc.
   goto :failed
 )
@@ -46,7 +39,7 @@ if not exist "%REMOTION%\node_modules" (
 call :portBusy 3001
 if errorlevel 1 (
   echo Dang khoi dong Server API...
-  start "LOG - Server API 3001" /D "%SERVER%" cmd /k "node server.js"
+  start "LOG - Server API 3001" /D "%SERVER%" cmd /k "node index.js"
 ) else (
   echo Cong 3001 dang duoc su dung. Se kiem tra API.
 )
@@ -54,7 +47,7 @@ if errorlevel 1 (
 call :portBusy 3000
 if errorlevel 1 (
   echo Dang khoi dong Remotion Studio...
-  start "LOG - Remotion 3000" /D "%REMOTION%" cmd /k "npm run dev -- --port=3000 --no-open"
+  start "LOG - Remotion 3000" /D "%BASE_DIR%" cmd /k "npm run dev --workspace=engine -- --port=3000 --no-open"
 ) else (
   echo Cong 3000 dang duoc su dung. Se kiem tra Studio.
 )
